@@ -1,0 +1,108 @@
+<div class="header bg-gradient-primary pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card bg-default shadow">
+                <div class="card-header bg-transparent border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">List Coin</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Create Coin</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Base Asset</th>
+                                <th scope="col">Quote Asset</th>
+                                <th scope="col">Last Price</th>
+                                <th scope="col">Volumn 24h</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listCoin">
+                                <td>{{item?.name}}</td>
+                                <td>{{item?.baseAsset}}</td>
+                                <td>{{item?.quoteAsset}}</td>
+                                <td>{{item?.lastPrice}}</td>
+                                <td>{{item?.volumn24h}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Coin</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" #name class="form-control" id="name" placeholder="BTC">
+                </div>
+                <div class="form-group">
+                    <label for="baseAsset">Base Asset:</label>
+                    <input type="text" #baseAsset class="form-control" id="baseAsset" placeholder="USDT">
+                </div>
+                <div class="form-group">
+                    <label for="quoteAsset">Quote Asset:</label>
+                    <input type="text" #quoteAsset class="form-control" id="quoteAsset" placeholder="Bitcoin">
+                </div>
+                <div class="form-group">
+                    <label for="lastPrice">Last Price:</label>
+                    <input type="text" #lastPrice class="form-control" id="lastPrice" placeholder="8,524">
+                </div>
+                <div class="form-group">
+                    <label for="volumn24h">Volumn 24h:</label>
+                    <input type="text" #volumn24h class="form-control" id="volumn24h" placeholder="9,792">
+                </div>
+                <div class="form-group">
+                    <label for="marketId">Market:</label>
+                    <select name="marketId" #marketId class="form-control" id="marketId">
+                        <option value="">Select market</option>
+                        <option *ngFor="let item of listMarket" [value]="item.id">{{item.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="createCoin(name.value, baseAsset.value, quoteAsset.value, lastPrice.value, volumn24h.value, marketId.value)">Save</button>
+                <button type="button" class="btn btn-danger" id="closeModal" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
